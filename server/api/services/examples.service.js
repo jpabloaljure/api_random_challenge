@@ -12,11 +12,6 @@ export class ExamplesService {
     return Promise.resolve(examples);
   }
 
-  byId(id) {
-    l.info(`${this.constructor.name}.byId(${id})`);
-    return this.all().then(r => r[id])
-  }
-
   create(name) {
     const example = {
       id: id++,

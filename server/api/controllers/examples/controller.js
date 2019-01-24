@@ -6,15 +6,6 @@ export class Controller {
     .then(r => res.json(r));
   }
 
-  byId(req, res) {
-    ExamplesService
-      .byId(req.params.id)
-      .then(r => {
-        if (r) res.json(r)
-        else res.status(404).end();
-      });
-  }
-
   create(req, res) {
     ExamplesService
       .create(req.body.name)
