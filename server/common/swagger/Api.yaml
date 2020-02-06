@@ -7,6 +7,8 @@ basePath: /api/v1
 tags:
   - name: Examples
     description: Simple example endpoints
+  - name: Random Names
+    description: Api to Randomize a list of names  
   - name: Specification
     description: The swagger API specification
 
@@ -25,6 +27,21 @@ definitions:
       name:
         type: string
         description: The example name
+
+  RandomNamesBody:
+    type: array
+    title: random names
+    items:
+      type: string
+    uniqueItems: true
+    minItems: 1
+  
+  RandomNumber:
+    type: integer
+    title: random number
+    format: int32
+    minimum: 0
+
 
 paths:
   /examples:
@@ -47,8 +64,42 @@ paths:
           schema: 
             $ref: "#/definitions/ExampleBody"
       responses:
-        200:
-          description: Returns all examples
+        201:
+          description: Returns the example created
+    
+  
+  /randomNames:
+    get:
+      tags:
+        - Random Names
+      description: Fetch a list of n names requested from the names list. <br>
+                  If n is graiter than the number of names of the list returns the list shuffled<br>
+                  If n is not present returns the original names list   
+      parameters: 
+        - in: query
+          name: n
+          description: number of names to get from the suffle list. 
+          schema:
+            $ref: "#/definitions/RandomNumber"
+        
+      responses:
+        201:
+          description: Returns the random names requested
+               
+    post:
+      tags:
+        - Random Names
+      description: Create a new random list of names 
+      parameters:
+        - name: randomNames
+          in: body
+          description: list of items to shuffle
+          required: true
+          schema: 
+            $ref: "#/definitions/RandomNamesBody"
+      responses:
+        201:
+          description: Returns the list of names created  
 
   /spec:
     get:

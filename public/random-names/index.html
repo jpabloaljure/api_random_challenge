@@ -1,0 +1,64 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Names</title>
+  <style>
+    body {
+      margin:20px 200px 20px 200px;
+      background: #fafafa;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1><span>Random Names Service</span></h1>
+  
+  <h2>List Randomizer</h2>
+
+
+  <p>This form allows you to pick a random number of items of a List or arrange all the items of in random
+  order.</p>
+
+
+<form action="#" onsubmit="randomize(this); return false;">
+
+  <h3>Step 1: Enter List Items</h3>
+
+  <p>Enter your items in the field below, each on a separate
+  line.  Items and can be numbers, names, email addresses, etc. Duplicate Items will be removed. A
+  maximum of 20,000 characters are allowed.</p>
+
+  <div>
+
+  <textarea id="list" cols="60" rows="10" name="list" required maxlength="20000"></textarea><br />
+  </div>
+
+  <p></p>
+
+  <input type="hidden" name="format" value="html" />
+  <input type="hidden" name="rnd" value="new" />
+  <input type="hidden" name="count" value="1" />
+
+  <h3>Step 2: Enter your group selection</h3>
+  <p>Enter the number of random items to pick from the list. To random the whole list type 0.</p>
+  <input id="number" type="number" required name="number" value="0" /><br />
+  
+  <h3>Step 3: Go!</h3>
+
+  <p>
+    <input type="Submit" value="Randomize" />
+    <input type="reset" value="Reset Form" onclick="window.location.reload(true);" />
+  </p>
+
+  </form>
+  <h3><span id="resultTitle"></span>  </h3>
+  <p><span id="result"></span>  </p>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="./random-ui-controller.js"> </script>
+
+</body>
+
+</html>

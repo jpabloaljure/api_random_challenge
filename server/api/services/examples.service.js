@@ -13,6 +13,7 @@ export class ExamplesService {
   }
 
   create(name) {
+    console.log(name);
     const example = {
       id: id++,
       name
